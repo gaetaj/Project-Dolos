@@ -1,6 +1,7 @@
 import hashlib
 from uuid import uuid4
 from src.utils import handle_directory
+from os.path import basename
 
 
 HASH_LENGTH = 32
@@ -16,7 +17,7 @@ def message_insert(binary_path):
     hashed_digested = hashed_message.digest()
     binary_contents = binary.read()
     binary_contents += hashed_digested
-    new_binary = open(OUTPUT_PATH + binary_path, 'wb')
+    new_binary = open(OUTPUT_PATH + basename(binary_path), 'wb')
     new_binary.write(binary_contents)
     return hashed_digested.hex()
 
